@@ -6,7 +6,16 @@ window.addEventListener("load", function (){
 		commentInfos[i].childNodes[3].addEventListener("click", replyLinkClicked)
 	}
 
+	mediaInfos = document.getElementsByClassName("media__info")
+	for(i = 0; i < mediaInfos.length; i++) {
+		mediaInfos[i].childNodes[1].addEventListener("click", nameLinkClicked);
+	}
 
+	modalClose = document.getElementsByClassName("modal__close")[0];
+	modalClose.addEventListener("click", modalCloseClicked);
+
+	modalBackground = document.getElementsByClassName("modal")[0];
+	modalBackground.addEventListener("click", modalBackgroundClicked);
 });
 
 
@@ -25,14 +34,30 @@ function likeClicked() {
 	}
 }
 
+function nameLinkClicked() {
+	document.getElementsByClassName("modal")[0].style.display = "block";
+}
+
+function modalCloseClicked() {
+	document.getElementsByClassName("modal")[0].style.display = "none";
+}
+
+function modalBackgroundClicked() {
+	document.getElementsByClassName("modal")[0].style.display = "none";
+}
 
 function replyLinkClicked() {
 	//toggle visibility of reply area
-	if (this.parentNode.parentNode.childNodes[5].style.display == "none") {
-		this.parentNode.parentNode.childNodes[5].style.display = "block";
+	if (this.parentNode.parentNode.childNodes[5] != null) {
+		if (this.parentNode.parentNode.childNodes[5].style.display == "none") {
+			this.parentNode.parentNode.childNodes[5].style.display = "block";
+		}
+		else if (this.parentNode.parentNode.childNodes[5].style.display == "block") {
+			this.parentNode.parentNode.childNodes[5].style.display = "none";
+		}
 	}
-	else if (this.parentNode.parentNode.childNodes[5].style.display == "block") {
-		this.parentNode.parentNode.childNodes[5].style.display = "none";
+	else {
+		//reply area doesn't currently exist, do what?
 	}
 }
 
